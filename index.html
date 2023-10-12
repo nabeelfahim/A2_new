@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <script src="choropleth_map.vg.json"></script>
+    <script src="stacked_bar_chart.vg.json"></script>
+    <script src="scatter_plot.vg.json"></script>
+
+</head>
+<body>
+
+    <div id="title">
+        <h1>Global Energy Consumption Insights</h1>
+    </div>
+
+
+
+    <div id="choropleth_map" class="viz-holder"></div>
+    <div id="stacked_bar" class="viz-holder"></div>
+    <div id="scatter_plot" class="viz-holder"></div>
+    
+
+
+    <script type="text/javascript">
+
+        var choropleth_vis = "test.vg.json";
+        vegaEmbed('#choropleth_map', choropleth_vis).then(function(result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var stacked_bar_vis = "stacked_bar_chart.vg.json";
+        vegaEmbed('#stacked_bar', stacked_bar_vis).then(function(result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var scatter_plot_vis = "scatter_plot.vg.json";
+        vegaEmbed('#scatter_plot', scatter_plot_vis).then(function(result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+      
+       
+      </script>
+    
+</body>
+</html>

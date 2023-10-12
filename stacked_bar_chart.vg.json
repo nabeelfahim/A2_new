@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": "Energy Source Breakdown by Continent",
+  "data": {
+    "url": "total_energy_consumption.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": "bar",
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "ordinal",
+      "title": "Continent",
+      "sort": {"field": "TotalEnergy", "op": "sum", "order": "descending"}
+    },
+    "y": {
+      "field": "TotalEnergy",
+      "type": "quantitative",
+      "title": "Total Energy (TWh)"
+    },
+    "color": {
+      "field": "Energy Source",
+      "type": "nominal",
+      "title": "Energy Source"
+    }
+  },
+  "transform": [
+    {"filter": "Continent_selection == null || datum.Country == Continent_selection"},
+    {
+      "fold": ["Electricity from nuclear (TWh)", "Electricity from renewables (TWh)", "Electricity from fossil fuels (TWh)"],
+      "as": ["Energy Source", "TotalEnergy"]
+    },
+    {
+      "filter": {
+        "field": "Country",
+        "oneOf": ["North America", "South America", "Europe", "Africa", "Asia", "Oceania"]
+      }
+    }
+  ]
+}
